@@ -9,14 +9,13 @@ class ContactList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Expanded(
-                child: ListView.builder(
+        child:  ListView.builder(
                     shrinkWrap: true,
                     itemCount: chatInfo.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
+                      return Column(
+                        children: [
+                          InkWell(
                         onTap: () => {},
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 8),
@@ -35,6 +34,7 @@ class ContactList extends StatelessWidget {
                             leading: CircleAvatar(
                               backgroundImage: NetworkImage(
                                   chatInfo[index]['profilePic'].toString()),
+                                  radius: 30,
                             ),
                             trailing: Text(
                               chatInfo[index]['time'].toString(),
@@ -43,13 +43,14 @@ class ContactList extends StatelessWidget {
                             ),
                           ),
                         ),
-                      );
-                    })),
-            const Divider(
+                      ),
+                      const Divider(
               color: dividerColor,
               indent: 85,
             )
-          ],
-        ));
+                        ],
+                      );
+                    }),
+        );
   }
 }
